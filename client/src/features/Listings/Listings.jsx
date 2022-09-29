@@ -5,10 +5,10 @@ import Breadcrumb from '../../components/Breadcrumb/Breadcrumb';
 const Listings = () => {
     return (
         <>
-            <Banner title={"Browse Our Properties"} description={"Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt, pariatur!"} />
-            <Breadcrumb title={"Browse Listings"}/>
+        <Banner title={'Browse Our Properties'} description={"Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt, pariatur!"}/>
+            <Breadcrumb title={"Listings"}/>
             <section id="listings" className="py-4">
-  <div className="container">
+            <div className="container">
     <div className="row">
       {/* Listing 1 */}
       <div className="col-md-6 col-lg-4 mb-4">
@@ -284,7 +284,7 @@ const Listings = () => {
         </ul>
       </div>
     </div>
-  </div>
+            </div>
             </section>
         </>
     );

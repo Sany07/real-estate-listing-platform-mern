@@ -1,7 +1,10 @@
 import { Route, Routes } from 'react-router-dom';
 import Footer from './components/Footer/Footer';
 import Nav from './components/NavBar/Nav';
-import Search from './components/SearchSection/Search';
+import About from './features/About/About';
+import Login from './features/Account/Login/Login';
+import Register from './features/Account/Register/Register';
+import Home from './features/Home/Home';
 import Listings from './features/Listings/Listings';
 
 
@@ -10,12 +13,14 @@ function App() {
   return (
 <>
           <Nav/>
-          <Search/>
         <Routes>
-          <Route path="/listings" element={<Listings />} />
+          <Route path="listings" element={<Listings />} />
+          <Route path='/' element={<Home />} />
+          <Route path='login' element={<Login />} />
+          <Route path='register' element={<Register />} />
+          <Route path='about' element={<About />} />
 
         {/* 
-          <Route path='/' element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/donor/:id" element={<SingleDonor />}/>
           <Route path="/search/:slug" element={<SearchResult />}/>
