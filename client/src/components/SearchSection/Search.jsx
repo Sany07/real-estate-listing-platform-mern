@@ -1,6 +1,17 @@
 import React from 'react';
+import { useState } from 'react';
+import { useForm } from "react-hook-form";
+import { useNavigate } from 'react-router-dom';
 
 const Search = () => {
+    const { register, handleSubmit, reset, formState: { errors }  } = useForm();
+  
+    const navigate = useNavigate();
+    const AddSubmit = async (searchdata) => {
+        console.log('searchdata',searchdata)
+            navigate(`/search?bedrooms=${searchdata.Bedrooms}&garage=${searchdata.garage}`);
+         
+    };
     return (
         <>
             <section id="showcase">
@@ -13,18 +24,18 @@ const Search = () => {
                     <p className="lead">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Recusandae quas, asperiores eveniet vel nostrum magnam
                     voluptatum tempore! Consectetur, id commodi!</p>
                     <div className="search">
-                    <form action="search.html">
+                    <form onSubmit={handleSubmit(AddSubmit)}>
                         {/* Form Row 1 */}
                         <div className="form-row">
-                        <div className="col-md-4 mb-3">
+                        <div className="col-md-12 mb-3">
                             <label className="sr-only">Keywords</label>
                             <input type="text" name="keywords" className="form-control" placeholder="Keyword (Pool, Garage, etc)" />
                         </div>
-                        <div className="col-md-4 mb-3">
+                        {/* <div className="col-md-4 mb-3">
                             <label className="sr-only">City</label>
                             <input type="text" name="city" className="form-control" placeholder="City" />
-                        </div>
-                        <div className="col-md-4 mb-3">
+                        </div> */}
+                        {/* <div className="col-md-4 mb-3">
                             <label className="sr-only">State</label>
                             <select name="state" className="form-control">
                             <option selected="true" disabled="disabled">State (All)</option>
@@ -80,14 +91,14 @@ const Search = () => {
                             <option value="WI">Wisconsin</option>
                             <option value="WY">Wyoming</option>
                             </select>
-                        </div>
+                        </div> */}
                         </div>
                         {/* Form Row 2 */}
                         <div className="form-row">
                         <div className="col-md-6 mb-3">
                             <label className="sr-only">Bedrooms</label>
-                            <select name="bedrooms" className="form-control">
-                            <option selected="true" disabled="disabled">Bedrooms (All)</option>
+                            <select {...register("Bedrooms")} className="form-control">
+                            <option value='' >Bedrooms (All)</option>
                             <option value={1}>1</option>
                             <option value={2}>2</option>
                             <option value={3}>3</option>
@@ -101,18 +112,19 @@ const Search = () => {
                             </select>
                         </div>
                         <div className="col-md-6 mb-3">
-                            <select name="price" className="form-control" id="type">
-                            <option selected="true" disabled="disabled">Max Price (Any)</option>
-                            <option value={100000}>$100,000</option>
-                            <option value={200000}>$200,000</option>
-                            <option value={300000}>$300,000</option>
-                            <option value={400000}>$400,000</option>
-                            <option value={500000}>$500,000</option>
-                            <option value={600000}>$600,000</option>
-                            <option value={700000}>$700,000</option>
-                            <option value={800000}>$800,000</option>
-                            <option value={900000}>$900,000</option>
-                            <option value={1000000}>$1M+</option>
+                            <select {...register("garage")} className="form-control" id="type">
+                            <option selected="true" disabled="disabled">Garage</option>
+                            <option value='' >Garage (All)</option>
+                            <option value={1}>1</option>
+                            <option value={2}>2</option>
+                            <option value={3}>3</option>
+                            <option value={4}>4</option>
+                            <option value={5}>5</option>
+                            <option value={6}>6</option>
+                            <option value={7}>7</option>
+                            <option value={8}>8</option>
+                            <option value={9}>9</option>
+                            <option value={10}>10</option>
                             </select>
                         </div>
                         </div>

@@ -5,17 +5,19 @@ var validator = require('validator');
 const ListingSchema = mongoose.Schema({
     title:{
         type: String,
+        required: [true, 'Please enter a title'],
         trim: true,
-        maxLength: [500, 'Your firstname cannot exceed 8 characters']
     },
     description:{
         type: String,
+        required: [true, 'Please enter a description'],
         trim: true,
 
     },
     
     address:{
         type: String,
+        required: [true, 'Please enter a address'],
         trim: true,
 
     },
@@ -32,6 +34,11 @@ const ListingSchema = mongoose.Schema({
     bathrooms:{
         type: String,
         required: [true, 'Please enter a bathrooms'],
+        trim: true
+    },
+    garage:{
+        type: String,
+        required: [true, 'Please enter a garage'],
         trim: true
     },
     squareFeet:{
@@ -56,22 +63,18 @@ const ListingSchema = mongoose.Schema({
     },
     image1:{
         type: String,
-        required: [true, 'Please enter image link'],
         trim: true
     },
     image2:{
         type: String,
-        required: [true, 'Please enter image link'],
         trim: true
     },
     image3:{
         type: String,
-        required: [true, 'Please enter image link'],
         trim: true
     },
     image4:{
         type: String,
-        required: [true, 'Please enter image link'],
         trim: true
     }
 },

@@ -1,10 +1,12 @@
 const express = require("express");
-const { allListings, newListing } = require("../controllers/listingController");
+const { allListings, newListing, getListingDetail, searchListing } = require("../controllers/listingController");
 
 const router = express.Router();
 
-router.get("/listings",allListings);
-router.post("/listings",newListing);
+router.get("/",allListings);
+router.post("/",newListing);
+router.get("/detail/:id",getListingDetail);
+router.get("/search",searchListing);
 
 
 

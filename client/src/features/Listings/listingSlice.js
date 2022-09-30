@@ -5,13 +5,13 @@ export const listingsApi = createApi({
 reducerPath: 'listingsApi',
 
  baseQuery: fetchBaseQuery({
-  baseUrl: 'https://jsonplaceholder.typicode.com/',
+  baseUrl: 'https://drealestate.herokuapp.com/api/',
  }),
 
  endpoints: (builder) => ({
   getAllListings: builder.query({
    query: () => ({
-    url: 'posts',
+    url: 'listings',
     method: 'GET'
    })
   }),
@@ -19,12 +19,21 @@ reducerPath: 'listingsApi',
     query: (id) => {
      console.log("ID:", id)
      return {
-      url: `posts/${id}`,
+      url: `listings/detail/${id}`,
       method: 'GET'
      }
     }
    }),
+   searchListing: builder.query({
+     query: ({garage,bedrooms}) => {
+      console.log("ID:",bedrooms,garage)
+      return {
+       url: `listings/search?bedrooms=${bedrooms}&garage=${garage}`,
+       method: 'GET'
+      }
+     }
+    })
 })
 })
 
-export const { useGetAllListingsQuery, useGetListingByIdQuery} = listingsApi
+export const { useGetAllListingsQuery, useGetListingByIdQuery, useSearchListingQuery} = listingsApi

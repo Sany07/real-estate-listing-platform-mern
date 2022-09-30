@@ -15,15 +15,42 @@ const allListings = asyncHandler(async(req, res)=>{
 
 const newListing = asyncHandler(async(req, res)=>{
     
-    const { userName, email, password} = req.body
+    const {         title,
+        description,
+        image4,
+        image3,
+        image2,
+        price,
+        image1,
+        image,
+        realtor,
+        address,
+        bedrooms,
+        bathrooms,
+        garage,
+        squareFeet,
+        lotSize} = req.body
 
 
     const listing = await Listings.create({
         title,
         description,
+        image4,
+        image3,
+        image2,
+        price,
+        image1,
+        image,
+        realtor,
+        address,
+        bedrooms,
+        bathrooms,
+        garage,
+        squareFeet,
+        lotSize
         
     })
-    
+    console.log(listing);
     if(listing) {
         res.status(201).json({
         message: 'Post successfull',
@@ -36,8 +63,37 @@ const newListing = asyncHandler(async(req, res)=>{
     
 })
 
+const getListingDetail = asyncHandler(async(req, res, next)=>{
+    
+
+    const listing = await Listings.findById(req.params.id)
+    
+
+    if (!listing) {
+        return next(new ErrorHandler("Listing Not Found", 404));
+    }
+
+    res.status(200).json({
+        success: true,
+        listing,
+    });
+});
+
+
+const searchListing = asyncHandler(async(req, res, next)=>{
+    console.log(req.query);
+    const listing = await Listings.find({
+        bedrooms: req.query.bedrooms,
+        garage: req.query.garage
+    });
+    console.log(listing);
+    res.status(200).json({
+        success: true,
+        listing,
+    });
+});
 
 module.exports ={
     allListings,
-    newListing
+    newListing,getListingDetail, searchListing
 }

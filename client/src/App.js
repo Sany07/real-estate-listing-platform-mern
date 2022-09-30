@@ -7,6 +7,7 @@ import Register from './features/Account/Register/Register';
 import Home from './features/Home/Home';
 import Listings from './features/Listings/Listings';
 import SingleListing from './features/Listings/SingleListing';
+import SearchResult from './features/Search/SearchResult';
 
 
 
@@ -21,6 +22,7 @@ function App() {
           <Route path='login' element={<Login />} />
           <Route path='register' element={<Register />} />
           <Route path='about' element={<About />} />
+          <Route path='search' element={<SearchResult />} />
 
         {/* 
           <Route path="/about" element={<About />} />

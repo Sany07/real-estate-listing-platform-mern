@@ -20,9 +20,8 @@ const Listings = () => {
       return (
           <Spinner/>
         )
-
-  }else{
-        console.log(listings);
+  }else if(error){
+        console.log(error);
     }
     return (
         <>
@@ -33,7 +32,7 @@ const Listings = () => {
             <div className="container">
     <div className="row">
       {/* Listing 1 */}
-      {listings.map(listing => <ListingCard key={listing.id} listing={listing}/>)}
+      {listings.listings.map(listing => <ListingCard key={listing.id} listing={listing}/>)}
    
     </div>
     <div className="row">
