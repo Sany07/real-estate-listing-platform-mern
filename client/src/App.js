@@ -16,7 +16,7 @@ function App() {
           <Nav/>
         <Routes>
           <Route path="listings" element={<Listings />} />
-          <Route path="listing/:id" element={<SingleListing />} />
+          <Route path="listings/:id" element={<SingleListing />} />
           <Route path='/' element={<Home />} />
           <Route path='login' element={<Login />} />
           <Route path='register' element={<Register />} />

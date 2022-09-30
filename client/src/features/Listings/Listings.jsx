@@ -2,6 +2,7 @@ import React from 'react';
 import Banner from '../../components/Banner/Banner';
 import Breadcrumb from '../../components/Breadcrumb/Breadcrumb';
 import ListingCard from '../../components/ListingCard/ListingCard';
+import Spinner from '../../components/Spinner/Spinner';
 import { useGetAllListingsQuery } from './listingSlice';
 
 
@@ -16,9 +17,12 @@ const Listings = () => {
         error
     } = useGetAllListingsQuery('getListings')
     if(isLoading){
-        return 'Loading'
-    }else{
-        console.log(listings.length);
+      return (
+          <Spinner/>
+        )
+
+  }else{
+        console.log(listings);
     }
     return (
         <>

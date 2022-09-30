@@ -15,7 +15,16 @@ reducerPath: 'listingsApi',
     method: 'GET'
    })
   }),
+  getListingById: builder.query({
+    query: (id) => {
+     console.log("ID:", id)
+     return {
+      url: `posts/${id}`,
+      method: 'GET'
+     }
+    }
+   }),
 })
 })
 
-export const { useGetAllListingsQuery} = listingsApi
+export const { useGetAllListingsQuery, useGetListingByIdQuery} = listingsApi

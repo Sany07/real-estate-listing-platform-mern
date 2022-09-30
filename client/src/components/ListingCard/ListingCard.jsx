@@ -1,6 +1,10 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
-const ListingCard = (listing) => {
+const ListingCard = ({listing}) => {
+
+  const link = `${listing.id}`
     return (
         <>
         <div className="col-md-6 col-lg-4 mb-4">
@@ -40,7 +44,7 @@ const ListingCard = (listing) => {
               <i className="fas fa-clock" /> 2 days ago</div>
           </div>
           <hr />
-          <a href="listing.html" className="btn btn-primary btn-block">More Info</a>
+          <Link to={link} className="btn btn-primary btn-block">More Info</Link>
         </div>
             </div>
         </div>  

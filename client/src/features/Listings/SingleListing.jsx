@@ -1,14 +1,29 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
-
+import { Link, useParams } from 'react-router-dom';
+import Spinner from '../../components/Spinner/Spinner';
+import { useGetListingByIdQuery } from './listingSlice';
+import { FallingLines } from  'react-loader-spinner'
 const SingleListing = () => {
     const { id } = useParams();
+    const {
+        data: listing,
+        isLoading,
+        isSuccess,
+        isError,
+        error
+    } = useGetListingByIdQuery(id)
+    if(isLoading){
+        return (
+            <Spinner/>
+          )
+
+    }
     return (
         <>
             {/* Listing */}
             <section id="listing" className="py-4">
                 <div className="container">
-                <a href="listings.html" className="btn btn-light mb-4">Back To Listings</a>
+                <Link to='/listings' className="btn btn-light mb-4">Back To Listings</Link>
                 <div className="row">
                     <div className="col-md-9">
                     {/* Home Main Image */}
