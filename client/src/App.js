@@ -6,6 +6,7 @@ import Login from './features/Account/Login/Login';
 import Register from './features/Account/Register/Register';
 import Home from './features/Home/Home';
 import Listings from './features/Listings/Listings';
+import SingleListing from './features/Listings/SingleListing';
 
 
 
@@ -15,6 +16,7 @@ function App() {
           <Nav/>
         <Routes>
           <Route path="listings" element={<Listings />} />
+          <Route path="listing/:id" element={<SingleListing />} />
           <Route path='/' element={<Home />} />
           <Route path='login' element={<Login />} />
           <Route path='register' element={<Register />} />
