@@ -1,6 +1,7 @@
 import { Route, Routes } from 'react-router-dom';
 import Footer from './components/Footer/Footer';
 import Nav from './components/NavBar/Nav';
+import CustomToster from './components/Toster/CustomToster';
 import About from './features/About/About';
 import Login from './features/Account/Login/Login';
 import Register from './features/Account/Register/Register';
@@ -15,6 +16,7 @@ function App() {
   return (
 <>
           <Nav/>
+          <CustomToster />
         <Routes>
           <Route path="listings" element={<Listings />} />
           <Route path="listings/:id" element={<SingleListing />} />

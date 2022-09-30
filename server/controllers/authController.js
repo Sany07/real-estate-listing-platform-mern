@@ -3,8 +3,8 @@ const asyncHandler = require('express-async-handler')
 const generateJwtToken = require('../utils/generateJwtToken')
 
 // @desc Login Controller
-const loginUser = asyncHandler(async(req, res)=>{
-    const {email, password} = req.body
+const loginUser = asyncHandler(async(req, res, next)=>{
+    const { email, password } = req.body;
 
     if (!email || !password) {
         throw new Error('Please add all fields', res.status(400))
@@ -13,30 +13,31 @@ const loginUser = asyncHandler(async(req, res)=>{
     const user = await User.findOne({email}).select("+password");
     
     if(!user){
-        throw new Error('Invalid Credentials',res.status(404))
+        throw new Error('User Not Found',res.status(404))
     }
     const isMach = await user.comparePassword(password)
     
     if (!isMach) {
-        console.log(isMach);
         throw new Error('Invalid Credentials',res.status(404))
     }
     res.status(200).json({     
+        message: 'Account SignIn Successfully',
          _id: user.id,
-        name: user.userName,
+        name: user.username,
         email: user.email,
         token: generateJwtToken(user._id)
     })
 })
 
 // @desc Register Controller
-const registerUser = asyncHandler(async(req, res)=>{
+const registerUser = asyncHandler(async(req, res, next)=>{
     
-    const { userName, email, password} = req.body
-    if (!userName || !email || !password) {
+    const { first_name, last_name, username, email, password, password2 } = req.body
+    console.log(first_name, last_name, username, email, password, password2);
+    if (!first_name || !last_name || !username || !password || !email || !password2) {
         throw new Error('Please add all fields', res.status(400))
     }
-    const isUserNameExist = await User.findOne({ userName });
+    const isUserNameExist = await User.findOne({ username });
 
     if (isUserNameExist) {
         throw new Error('Username already exists', res.status(400))
@@ -47,16 +48,18 @@ const registerUser = asyncHandler(async(req, res)=>{
     }
 
     const user = await User.create({
-        userName,
+        first_name,
+        last_name,
+        username,
         email,
         password
     })
     
     if(user) {
         res.status(201).json({
-        message: 'Account Registered successfully',
+        message: 'Successfully Registered',
         _id: user.id,
-        name: user.userName,
+        name: user.username,
         email: user.email,
         token: generateJwtToken(user._id),
         })

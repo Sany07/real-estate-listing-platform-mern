@@ -3,18 +3,18 @@ const bcrypt = require('bcrypt');
 var validator = require('validator');
 
 const UserSchema = mongoose.Schema({
-    firstName:{
+    first_name:{
         type: String,
         trim: true,
-        maxLength: [8, 'Your firstname cannot exceed 8 characters']
+        maxLength: [20, 'Your firstname cannot exceed 8 characters']
     },
-    lastName:{
+    last_name:{
         type: String,
         trim: true,
-        maxLength: [8, 'Your lastname cannot exceed 8 characters']
+        maxLength: [20, 'Your lastname cannot exceed 8 characters']
 
     },
-    userName:{
+    username:{
         type: String,
         required: [true, 'Please enter a valid username'],
         unique: true,
