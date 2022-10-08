@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import { FallingLines } from 'react-loader-spinner';
 import { toast } from 'react-toastify';
 import Spinner from '../../../components/Spinner/Spinner';
-import { useSigninUserMutation } from '../AuthSlice';
+import { useSigninUserMutation } from '../authApi';
 
 const Login = () => {
     const { register, handleSubmit, reset, formState: { errors }  } = useForm();

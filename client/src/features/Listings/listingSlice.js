@@ -1,13 +1,9 @@
 
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { apiSlice } from '../api/apiSlice';
 
-export const listingsApi = createApi({
+export const listingsApi = apiSlice.injectEndpoints({
 reducerPath: 'listingsApi',
-
- baseQuery: fetchBaseQuery({
-  baseUrl: 'https://drealestate.herokuapp.com/api/',
- }),
-
  endpoints: (builder) => ({
   getAllListings: builder.query({
    query: () => ({

@@ -2,7 +2,7 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { FallingLines } from 'react-loader-spinner';
 import { toast } from 'react-toastify';
-import { useSignupUserMutation } from '../AuthSlice';
+import { useSignupUserMutation } from '../authApi';
 
 const Register = () => {
   const { register, handleSubmit, reset, formState: { errors }  } = useForm();

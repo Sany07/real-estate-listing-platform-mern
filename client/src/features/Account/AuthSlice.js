@@ -1,36 +1,36 @@
+import { createSlice } from '@reduxjs/toolkit';
 
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+const initialState = {
+  accessToken: undefined,
+  user: undefined,
+};
 
-export const authApi = createApi({
-reducerPath: 'authApi',
+export const authSlice = createSlice({
+  name: 'auth',
+  initialState,
+  reducers: {
+    userLoggedIn: (state, action) => {
+      state.accessToken = action.payload.accessToken;
+      state.user = action.payload.user;
 
- baseQuery: fetchBaseQuery({
-  baseUrl: 'https://drealestate.herokuapp.com/api/',
- }),
-
-
-  endpoints: (builder) => ({
-    signinUser: builder.mutation({
-      query: (data) => {
-        console.log(data);
-        return {
-          url: "/auth/login",
-          method: "post",
-          body:data,
-        };
-      },
-    }),
-    signupUser: builder.mutation({
-        query: (data) => {
-          console.log(data);
-          return {
-            url: "/auth/register",
-            method: "post",
-            body:data,
-          };
-        },
-      }),
-    })
+      // set auth info to the localStorage when loggedIn
+      localStorage.setItem(
+        'auth',
+        JSON.stringify({
+          accessToken: action.payload.accessToken,
+          user: action.payload.user,
+        })
+      );
+    },
+    userLoggedOut: (state) => {
+      state.accessToken = undefined;
+      state.user = undefined;
+      // remove auth info from localStorage when loggedOut
+      localStorage.removeItem('auth');
+    }
+  }
 })
 
-export const {   useSigninUserMutation, useSignupUserMutation} = authApi
+
+export const { userLoggedIn, userLoggedOut } = authSlice.actions;
+export default authSlice.reducer;

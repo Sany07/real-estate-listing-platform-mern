@@ -27,7 +27,7 @@ const Home = () => {
   <h3 className="text-center mb-3">Latest Listings</h3>
   <div className="row">
 
-            {listings.listings.map((listing, id ) => {
+            {listings?.listings.map((listing, id ) => {
                 return (console.log(id),
                 id <3?
                  <ListingCard key={listing.id} listing={listing}/>:''
