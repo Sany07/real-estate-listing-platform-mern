@@ -1,7 +1,7 @@
 
 import { apiSlice } from '../api/apiSlice';
-
 import { userLoggedIn } from './authSlice';
+
 
 export const authApi = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
@@ -14,18 +14,19 @@ export const authApi = apiSlice.injectEndpoints({
         };
       },
     }),
-    async onQueryStarted(arg, { queryFulfilled, dispatch }) {
+    async onQueryStarted(arg, {dispatch, queryFulfilled }) {
         try {
           const result = await queryFulfilled;
+          console.log('result',result);
           dispatch(
             userLoggedIn({
-              accessToken: result.data.accessToken,
-              user: result.data.user,
+              accessToken: result.data.token,
+              email: result.data.email,
             })
           );
         } catch (err) {
           // do nothing
-          console.log(err);
+          console.log('err', err);
         }
       },
     signupUser: builder.mutation({

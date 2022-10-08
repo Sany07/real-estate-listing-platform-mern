@@ -1,9 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit'
-import { setupListeners } from '@reduxjs/toolkit/dist/query'
 import { authApi } from '../features/Account/authApi'
+import authSlice from '../features/Account/authSlice'
 import { apiSlice } from '../features/api/apiSlice'
 import { listingsApi } from '../features/Listings/listingSlice'
-
 
 // export const store = configureStore({
 //   reducer: {
@@ -22,9 +21,9 @@ import { listingsApi } from '../features/Listings/listingSlice'
 export const store = configureStore({
   reducer: {
     [apiSlice.reducerPath]: apiSlice.reducer,
-    // auth: authReducer,
     [listingsApi.reducerPath]: listingsApi.reducer,
     [authApi.reducerPath]: authApi.reducer,
+    auth: authSlice
   },
   devTools: process.env.NODE_ENV !== 'production',
   middleware: (getDefaultMiddlewares) =>

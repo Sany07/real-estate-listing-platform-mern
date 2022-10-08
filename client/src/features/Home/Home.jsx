@@ -12,30 +12,24 @@ const Home = () => {
         isError,
         error
     } = useGetAllListingsQuery('getListings')
-    if(isLoading){
-      return (
-          <Spinner/>
-        )
 
-  }else if(error){
-        console.log(error);
-    }
     return (
         <>
             <Search/>
             <div className="container">
-  <h3 className="text-center mb-3">Latest Listings</h3>
-  <div className="row">
+                <h3 className="text-center mb-3">Latest Listings</h3>
+                <div className="row">
+                { isLoading ? <Spinner/> :
 
-            {listings?.listings.map((listing, id ) => {
-                return (console.log(id),
-                id <3?
-                 <ListingCard key={listing.id} listing={listing}/>:''
-                )
-                })}
-            
-            </div></div>
-  
+                    listings?.listings.map((listing, id ) => {
+                        return (console.log(id),
+                        id <3?
+                        <ListingCard key={listing.id} listing={listing}/>:''
+                        )
+                    })
+                }
+                    </div>
+                </div>
             <section id="services" className="py-5 bg-secondary text-white">
                 <div className="container">
                 <div className="row text-center">

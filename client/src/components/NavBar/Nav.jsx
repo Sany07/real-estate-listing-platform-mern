@@ -1,7 +1,18 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import { Link, NavLink } from 'react-router-dom';
+import { userLoggedOut } from '../../features/Account/authSlice';
 
 const Nav = () => {
+
+
+    const dispatch = useDispatch();
+
+    // handle logout
+    const handleLogout = () => {
+      dispatch(userLoggedOut());
+    };
+
     return (
         <>
         {/* Top Bar */}

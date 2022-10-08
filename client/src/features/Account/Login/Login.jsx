@@ -21,9 +21,13 @@ const Login = () => {
         draggable: true,
         progress: undefined,
         toastId: "success1",
-      })}
+      })
+      if (data?.token && data?.email) {
+        
+            // console.log(data);
+        }
+      }
       else if(error){
-        console.log(error.data.message);
         toast.error(error.data.message, {
           position: "top-right",
           autoClose: 5000,
@@ -49,9 +53,7 @@ const Login = () => {
            
                         <div className="card-body">
                             <form onSubmit={handleSubmit((data) => {
-                                console.log({data});
                                 signinUser(data);
-
                             })}>
                             <div className="form-group">
                                 <label htmlFor="email">Email</label>
@@ -73,7 +75,6 @@ const Login = () => {
                             </div>
                             : 
                             <input type="submit" value="Login" className="btn btn-secondary btn-block " />
-                        
                             }
                             </form>
                         </div>
