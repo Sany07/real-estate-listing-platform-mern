@@ -5,7 +5,8 @@ import { userLoggedIn } from './authSlice';
 
 export const authApi = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
-    signinUser: builder.mutation({
+    signinUser: builder.mutation(
+      {
       query: (data) => {
         return {
           url: "/auth/login",
@@ -13,11 +14,17 @@ export const authApi = apiSlice.injectEndpoints({
           body:data,
         };
       },
-    }),
     async onQueryStarted(arg, {dispatch, queryFulfilled }) {
+      
         try {
           const result = await queryFulfilled;
-          console.log('result',result);
+          // localStorage.setItem(
+          //   "auth",
+          //   JSON.stringify({
+          //       accessToken: result.data.token,
+          //       user: result.data.email,
+          //   })
+          // );
           dispatch(
             userLoggedIn({
               accessToken: result.data.token,
@@ -29,6 +36,7 @@ export const authApi = apiSlice.injectEndpoints({
           console.log('err', err);
         }
       },
+    }),
     signupUser: builder.mutation({
         query: (data) => {
           console.log(data);
@@ -39,7 +47,7 @@ export const authApi = apiSlice.injectEndpoints({
           };
         },
       }),
-    })
+    }),
 })
 
 export const {   useSigninUserMutation, useSignupUserMutation} = authApi

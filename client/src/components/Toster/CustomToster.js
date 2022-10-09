@@ -14,6 +14,7 @@ const CustomToster = () => {
       pauseOnFocusLoss
       draggable
       pauseOnHover
+      toastId={1}
     />
   );
 };

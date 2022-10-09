@@ -12,9 +12,7 @@ const authSlice = createSlice({
     userLoggedIn: (state, action) => {
       state.accessToken = action.payload.accessToken;
       state.email = action.payload.email;
-      console.log('sa',action.payload);
-
-      // set auth info to the localStorage when loggedIn
+      
       localStorage.setItem(
         'auth',
         JSON.stringify({

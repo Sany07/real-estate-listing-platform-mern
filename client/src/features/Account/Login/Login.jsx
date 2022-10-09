@@ -4,40 +4,24 @@ import { FallingLines } from 'react-loader-spinner';
 import { toast } from 'react-toastify';
 import Spinner from '../../../components/Spinner/Spinner';
 import { useSigninUserMutation } from '../authApi';
+import {  useNavigate } from 'react-router-dom';
 
 const Login = () => {
     const { register, handleSubmit, reset, formState: { errors }  } = useForm();
 
     const [signinUser,{data,isLoading,isSuccess,isError,error}] = useSigninUserMutation()
 
+    const navigate = useNavigate();
 
     if(isSuccess){     
-        toast.success(data.message, {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        toastId: "success1",
-      })
+        toast.success(data.message,{toastId: 1})
       if (data?.token && data?.email) {
         
-            // console.log(data);
+            navigate("/")
         }
       }
       else if(error){
-        toast.error(error.data.message, {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          toastId: "success1",
-        })
+        toast.error(error.data.message,{toastId: 1})
       }
     return (
         <>
