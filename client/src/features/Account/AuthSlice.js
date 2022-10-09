@@ -12,7 +12,7 @@ const authSlice = createSlice({
     userLoggedIn: (state, action) => {
       state.accessToken = action.payload.accessToken;
       state.email = action.payload.email;
-      
+
       localStorage.setItem(
         'auth',
         JSON.stringify({
@@ -23,7 +23,7 @@ const authSlice = createSlice({
     },
     userLoggedOut: (state) => {
       state.accessToken = undefined;
-      state.user = undefined;
+      state.email = undefined;
       // remove auth info from localStorage when loggedOut
       localStorage.removeItem('auth');
     }

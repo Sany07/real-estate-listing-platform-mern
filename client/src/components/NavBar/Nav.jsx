@@ -1,16 +1,21 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
-import { Link, NavLink } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import { userLoggedOut } from '../../features/Account/authSlice';
 
 const Nav = () => {
 
-
+    const { email } = useSelector((state) => state.auth) || {};
+  
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     // handle logout
     const handleLogout = () => {
       dispatch(userLoggedOut());
+      toast.success("Logout Successfull",{toastId: 1})
+      navigate('login')
     };
 
     return (
@@ -70,15 +75,33 @@ const Nav = () => {
                 </li>
                 </ul>
                 <ul className="navbar-nav ml-auto">
-                <li className="nav-item mr-3">
-                    <NavLink className="nav-link" to="register">
-                    <i className="fas fa-user-plus" /> Register</NavLink>
-                </li>
-                <li className="nav-item mr-3">
-                    <NavLink className="nav-link" to="login">
-                    <i className="fas fa-sign-in-alt" />
-                    Login</NavLink>
-                </li>
+                {
+                    email ? <>
+                    <li className="nav-item mr-3">
+                        <NavLink className="nav-link">
+                        <i className="fas fa-user-plus" /> {email}</NavLink>
+                    </li>
+                    <li className="nav-item mr-3">
+                        <NavLink className="nav-link" >
+                        <i className="fas fa-user-plus" /> Dashboard</NavLink>
+                    </li>
+                    <li className="nav-item mr-3"  onClick={handleLogout}>
+                        <NavLink className="nav-link">
+                        <i className="fas fa-sign-in-alt" /> Logout</NavLink>
+                    </li>
+                    </>
+                    :
+                    <>
+                        <li className="nav-item mr-3">
+                            <NavLink className="nav-link" to="register">
+                            <i className="fas fa-user-plus" /> Register</NavLink>
+                        </li>
+                        <li className="nav-item mr-3">
+                            <NavLink className="nav-link" to="login">
+                            <i className="fas fa-sign-in-alt" /> Login</NavLink>
+                        </li>
+                    </>
+                }
                 </ul>
             </div>
             </div>

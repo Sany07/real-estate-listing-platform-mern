@@ -10,9 +10,9 @@ const SingleListing = () => {
     const {
         data,
         isLoading,
-        isSuccess,
-        isError,
-        error
+        // isSuccess,
+        // isError,
+        // error
     } = useGetListingByIdQuery(id)
     if(isLoading){
         return (
