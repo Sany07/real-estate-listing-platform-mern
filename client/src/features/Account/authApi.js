@@ -4,6 +4,7 @@ import { userLoggedIn } from './authSlice';
 
 
 export const authApi = apiSlice.injectEndpoints({
+  tagTypes: ['Post'],
   endpoints: (builder) => ({
     signinUser: builder.mutation(
       {
