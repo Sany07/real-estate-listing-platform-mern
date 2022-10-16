@@ -1,1 +1,0 @@
-#property-listing-platform
